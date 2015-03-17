@@ -9,16 +9,13 @@ import random
 import string
 import sys
 import types
-import whrandom
-
-rand = whrandom.whrandom()
 
 ### Constants
 
 #Some magic constants. These are multipliers which allow you to tweak
 #the scoring system and the difficulty of the game.
 GOLD_CONSTANT = 7 #Relative NetHack point value of WFTM gold
-ITEM_CONSTANT = 1 #Relative "usefulness" of WFTM item points 
+ITEM_CONSTANT = 1 #Relative "usefulness" of WFTM item points
 MONSTER_TOUGHNESS_CONSTANT = 7 #Relative maximum difficulty of monsters
 MAX_DUNGEON_LEVEL = 65 #Level the player must descend to to win the game
                        #(amulet is on 50)
@@ -119,7 +116,7 @@ raceData = {
     'dwarf' : [LAWFUL],
     'elf' : [CHAOTIC],
     'gnome' : [NEUTRAL],
-    'orc' : [CHAOTIC]   
+    'orc' : [CHAOTIC]
     }
 
 genderData = {
@@ -152,9 +149,9 @@ class _Getch:
             self.impl = _GetchWindows()
         except ImportError: pass
         self.impl = _GetchUnix()
-        
+
     def __call__(self): return self.impl()
-        
+
 class _GetchUnix:
     def __init__(self):
         import tty, sys
@@ -166,7 +163,7 @@ class _GetchUnix:
         else:
             import TERMIOS
             iomod = TERMIOS
-        
+
         fd = sys.stdin.fileno()
         old_settings = termios.tcgetattr(fd)
         try:
@@ -179,11 +176,11 @@ class _GetchUnix:
 class _GetchWindows:
     def __init__(self):
         import msvcrt
-        
+
         def __call__(self):
             import msvcrt
             return msvcrt.getch()
-        
+
 getch = _Getch()
 
 ### The game proper
@@ -196,30 +193,30 @@ class Game:
             os.system('clear')
         elif os.name in ('nt', 'dos'):
             os.system('cls')
-    
+
     def wrap(self, s, width=78):
         "Copied from the Python Cookbook. Written by Mike Brown."
-        return reduce(lambda line, word, width=width: "%s%s%s" % 
+        return reduce(lambda line, word, width=width: "%s%s%s" %
                       (line,
-                       ' \n'[(len(line[string.rfind(line, '\n')+1:]) + 
+                       ' \n'[(len(line[string.rfind(line, '\n')+1:]) +
                               len(word) >= width)], word),
                       string.split(s, ' ')
                       )
 
     def usage(self, exit=1):
-        as = alignmentSelection.keys()
-        as.sort()
+        ask = alignmentSelection.keys()
+        ask.sort()
         rs = roleMap.keys()
         rs.sort()
         print 'Usage: %s [-a%s] [-p%s] [-D]' % (sys.argv[0],
-                                                string.join(as, ''),
+                                                string.join(ask, ''),
                                                 string.join(rs, ''))
         sys.exit(exit)
 
     def getCharacter(self, validCharacters=None, prompt=None, allowQuit=0):
         "Stolen from Python cookbook."
         if prompt:
-            print prompt, ' ', 
+            print prompt, ' ',
         if allowQuit:
             if validCharacters:
                 if string.find(validCharacters, 'q') == -1:
@@ -232,7 +229,7 @@ class Game:
         if allowQuit and string.lower(input) == 'q':
             sys.exit()
         return input
-    
+
     def getYesNo(self, message, allowQuit=0):
         valid = 'yn'
         if allowQuit:
@@ -241,7 +238,7 @@ class Game:
         if (result == 'q'):
             sys.exit()
         else:
-            return (result == 'y')            
+            return (result == 'y')
 
     def more(self, indent=0):
         print ('' * indent) + '--More--',
@@ -302,7 +299,7 @@ class Game:
         pick = self.getYesNo('Shall I pick %s?' % whatToPick, 1)
         if pick:
             if self.alignment == None:
-                self.alignment = rand.choice(alignments)
+                self.alignment = random.choice(alignments)
             if self.role == None:
                 while not self.role or not self.role.pluralName:
                     self.role = random.choice(roles)
@@ -346,7 +343,7 @@ class Game:
                 for (align, name) in alignmentMap.items():
                     if string.lower(name[0]) == key:
                         self.alignment = align
-                        break            
+                        break
 
     def printIntro(self):
         print """It is written in your most sacred book:
@@ -377,9 +374,9 @@ class Game:
             print "All the other gods laugh at you."
             end = "quitting"
         else:
-            end = "dying"            
+            end = "dying"
             self.pc.score = int(self.pc.score * .9)
-            print "Argh! Your chosen one just died!"            
+            print "Argh! Your chosen one just died!"
             print "All the other gods laugh at you."
         print
         self.more()
@@ -447,7 +444,7 @@ class God:
         elif mood == 0:
             print 'Sounds like %s needs some help.' % worshipper.he
             order = (1,0,2)
-        else:            
+        else:
             print 'That %s is praying for help!' % worshipper.getEpithet()
             order = (2,1,0)
         what = 'Do you want to '
@@ -551,7 +548,7 @@ class God:
                 print 'Musta had one of those godproof silver dragon scale mails!'
                 print 'Perhaps summoning some minions will do the trick...'
                 print '*SHAZAM*'
-                worshipper.stackedMonsters = 5            
+                worshipper.stackedMonsters = 5
         elif punishment == 'drain':
             print 'All right! Time for some level drain action!'
             print '*WOMP*'
@@ -569,7 +566,7 @@ class God:
         elif punishment == 'minion':
             print 'Your minions will make short work of %s!' % worshipper.him
             print '*SHAZAM*'
-            worshipper.stackedMonsters = 5            
+            worshipper.stackedMonsters = 5
 
     def endgame(self, whoGotAmulet=None):
         if not whoGotAmulet:
@@ -590,10 +587,10 @@ class God:
             print self.game.wrap("You rush to the Hall of Spoilers to review the Amulet's capabilities, already dreaming of primacy over %s and %s." % tuple(otherGods))
             print
             print '| Amulet of Yendor'
-            print '|'            
+            print '|'
             print '| When carried, you get all of the following (mostly bad):'
             for prop in amuletProps:
-                print '|  *', prop                
+                print '|  *', prop
             print
             print 'Hmm...'
             print
@@ -604,7 +601,7 @@ class Player:
     def __init__(self, game, role, alignment, god, discovery=0):
         self.game = game
         self.discovery = discovery
-        
+
         self.amulet = 0
         self.won = 0
         self.quit = 0
@@ -659,7 +656,7 @@ class Player:
                     possibleRacesModuloClass.remove(race)
         #If there's only one possible alignment and the player isn't
         #of this alignment, they've got to be a priest.
-        if possibleRaces and rand.choice(roleMap.keys()) != 'p':
+        if possibleRaces and random.choice(roleMap.keys()) != 'p':
             self.race = random.choice(possibleRaces)
         else:
             self.role = roleMap['p']
@@ -738,7 +735,7 @@ class Player:
 
     def descendLevelChance(self):
         return max(5, 100-self.turnsOnLevel)
-    
+
     def descendLevel(self):
         self.setLevel(self.dungeonLevel+1)
         if random.randint(1,4) == 1:
@@ -813,7 +810,7 @@ class Player:
                     quitChance = 4
                 if random.randint(0, quitChance):
                     self.pray('help', random.randint(1,3))
-                    done = 1                
+                    done = 1
                 else:
                     self.quit = 1
                     done = 1
@@ -832,7 +829,7 @@ class Player:
                         multiplier = 1
                 damage = random.randint(3,self.dungeonLevel+3) * multiplier
                 monsterHP = monsterHP - damage
-            
+
             #Monster attacks
             if monsterHP > 0:
                 damage = 0
@@ -860,7 +857,7 @@ class Player:
             if self.nearAltar and not random.randint(0,3):
                 self.pray('sacrifice', maxMonsterHP)
             if not random.randint(0, 4):
-                self.getGoodie() #Woohoo            
+                self.getGoodie() #Woohoo
 
     def costItemPoints(self, cost):
         if self.itemPoints > 0:
@@ -877,6 +874,6 @@ class Player:
     def pray(self, type, arg=None):
         print self.game.wrap(self.getPrayerDescription(type))
         self.god.handlePrayer(self, type, arg)
-                    
+
 if __name__ == '__main__':
     Game().run(sys.argv)

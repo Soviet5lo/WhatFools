@@ -1,0 +1,22 @@
+Leonard Richardson (leonardr@segfault.org) wrote What Fools These
+Mortals.
+
+WFTM uses a couple of recipes from the Python cookbook:
+
+ "getch()-like unbuffered character reading from stdin on both Windows
+  and Unix"
+ By Danny Yoo
+ http://aspn.activestate.com/ASPN/Cookbook/Python/Recipe/134892
+
+ "one-liner word-wrap function"
+ By Mike Brown
+ http://aspn.activestate.com/ASPN/Cookbook/Python/Recipe/148061
+
+WFTM uses the introductory text from NetHack. I don't know who wrote
+that specific text, but it may have been Izchak Miller.
+
+WFTM quotes spoiler information from:
+
+ "Amulets and their properties in NetHack 3.4"
+ By Kevin Hugo and Dylan O'Donnell
+ http://www.steelypips.org/nethack/340/amul-340.html

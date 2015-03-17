@@ -1,0 +1,47 @@
+These features make the artifical player more like a smart Nethack player:
+
+ Add crowning behavior: a powerful player with access to an altar will
+ hang around the altar, kill monsters, and sacrifice each one.
+
+These features make the WFTM world more like the Nethack world:
+
+ Assign multipliers to each role to reflect the fact that
+ some roles are easier to play.
+
+ Add something to simulate the way that a player gets disproportionately
+ powerful at around dungeon level 15, once the powerful magic items
+ start coming.
+
+These are Nethack features missing from WFTM:
+
+ Add "You feel [very] close to {player}" messages on sacrifice.
+
+ Add crowning option when "very close". Note that prayer timeouts
+ increase when a player is crowned, so Player.resetPrayerTimeout()
+ will have to be changed. From spoilers:
+
+  Your god give you a favourable answer to a prayer		=random(350)
+   - when you are the Hand of Elbereth (additional)		+random(1000)
+   - when you are the Envoy of Balance (additional)		+random(2000)
+   - when you are the Glory of Arioch (additional)		+random(3000)
+
+ Add the disintegration beam form of the lightning bolt punishment.
+
+ The player might make sacrifices from another god's altar, or make
+ inappropriate sacrifices like self-aligned unicorns, which will tend
+ to anger you.
+
+ The player might even kick your altars over!
+
+ The player might go over to another god in your pantheon. They might
+ come back, or win or die as a servant of the other god.
+
+ There is a small chance that a player will sacrifice the Amulet to
+ another god in the endgame.
+
+These features are WFTM-specific enhancements:
+
+ Add role-specific prayers 
+
+ Add god-specific names used in prayers (eg. the stereotypical
+ "grey-eyed Athena").

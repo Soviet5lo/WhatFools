@@ -1,0 +1,73 @@
+What Fools These Mortals
+by Leonard Richardson (leonardr@segfault.org)
+
+The Story:
+
+ After the Creation, the cruel god Moloch rebelled against the
+ authority of Marduk the Creator.  Moloch stole from Marduk the most
+ powerful of all the artifacts of the gods, the Amulet of Yendor, and
+ he hid it in the dark cavities of Gehennom, the Under World, where he
+ now lurks, and bides his time.
+
+ All gods crave the Amulet. For ages you and your kind have sent heroes
+ to die in the cave complex that connects Gehennom to the mortal
+ world. You devised strategies and wards to help your own heroes,
+ horrible traps to halt your rivals' progress. New caves were hollowed
+ out, the races multiplied, gods died and were born, and still the
+ struggle continued.
+
+ Now the Mazes of Menace are overrun with monsters sent by one god to
+ destroy another's champion, choked with magical objects destined for
+ long-dead favorites. Mortals live as they always have, oblivious to
+ the great battle that rages just beyond their world. The gods tire;
+ the current situation cannot long endure. Perhaps this time your
+ chosen one will return with the Amulet. Perhaps...
+
+The Game:
+
+ What Fools These Mortals (WFTM) is a game based on the popular game
+ of NetHack. Instead of playing a mortal on a quest, you portray one
+ of the long-suffering deities who preside over your games of
+ NetHack. If your champion pleases you with sacrifices, you can show
+ your appreciation by means of a magical reward; if instead, you tire
+ of his or her constant requests for help, the lightning bolts are
+ always within easy reach. Win the amulet from Moloch, and you will
+ have achieved what no other god has done since the beginning of time!
+
+ WFTM is written in Python. It will run on both Unix and Windows, and
+ will run with minor display problems on other platforms.
+
+Gameplay:
+
+ WFTM gameplay is very simple. Occasionally you'll be asked a question
+ and prompted to enter a one-character response. At any such prompt
+ you can type one of the given letters, or 'q' to quit the game. You
+ may also be prompted with '--More--', which is an invitation to hit
+ any key. Eventually your champion will die, quit, or sacrifice the
+ Amulet to you. The game ends when any of those things happen.
+
+Command-line options:
+
+ There are two command-line options which let you skip the initial
+ questions that determine which deity you will play:
+
+  -a ('alignment') controls your ethical outlook. This can be [l]awful,
+   [n]eutral, or [c]haotic. Your champion will always be of your
+   alignment.
+
+  -p ('profession', or role) determines what type of person tends to
+   worship you. For instance: Ptah, Thoth, and Anhur are all worshiped
+   by wizards.
+ 
+   Your champion may be of your chosen profession, or may be a priest
+   who devotes him- or herself full time to spreading your gospel. If
+   your specified alignment conflicts with the alignment requirements
+   of your specified profession (as with Issek, the rather
+   underemployed god of lawful rogues), your champion will always be a
+   priest.
+
+  For example, specifying the arguments "-pw -an" will let you play
+  Thoth, the neutral god of wizards.
+
+ There is also a '-D' option, which puts your champion into discovery
+ mode. A champion in discovery mode cannot die, but may still quit.

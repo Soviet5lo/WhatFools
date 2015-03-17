@@ -1,0 +1,14 @@
+May 18, 2003: 1.0, "You are lucky! Full moon tonight."
+------------------------------------------------------
+
+Initial release.
+
+Features:
+
+ * Full deity compliance with Nethack 3.4.1
+ * Nethack-like front end with command line switches
+ * Tiny Nethack-like event-based game simulation
+ * Intercessory prayer
+ * Sacrifices
+ * A variety of punishments to inflict on mortals
+ * Almost none of the excitement of real Nethack!
